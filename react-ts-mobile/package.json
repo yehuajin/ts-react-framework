@@ -11,7 +11,8 @@
     "build-for-prod": "webpack --env production",
     "build-for-tester": "webpack --env tester",
     "build-for-demo": "webpack --env demo",
-    "build-icon": "node config/build-icon.js"
+    "build-icon": "node config/build-icon.js",
+    "lint": "eslint src --fix --ext .ts,.tsx "
   },
   "repository": {
     "type": "git",
@@ -104,5 +105,10 @@
     "not dead",
     "ie >= 11",
     "not op_mini all"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  }
 }
