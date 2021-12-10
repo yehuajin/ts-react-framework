@@ -3,7 +3,10 @@
     [
       "@babel/preset-env",
       {
-        "modules": false // modules 防止 babel 将任何模块类型都转译成 CommonJS 类型
+        "modules": false, // modules 防止 babel 将任何模块类型都转译成 CommonJS 类型
+        "useBuiltIns": "entry",
+        "corejs": "3" //加上他就解决了
+
       }
     ],
     "@babel/preset-react",

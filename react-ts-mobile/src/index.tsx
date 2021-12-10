@@ -6,6 +6,7 @@ import '@assets/css/common.scss';
 import '@assets/font/icon-fonts/icon.css';
 import ReactDom from 'react-dom';
 import App from '@pages/App';
+import 'core-js';
 // import env from '@config';
 // console.log(env);
 // import style from './index.module.scss';
