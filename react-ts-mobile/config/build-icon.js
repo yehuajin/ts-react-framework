@@ -33,11 +33,11 @@ let cssFileContent = `@font-face {font-family: 'sceofont';
 [class^='xf-icon'], [class*='xf-icon']{
   font-family:'sceofont'!important;
   speak: none;
+  font-size: 16px;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
   text-transform: none;
-  line-height: 1;
   vertical-align: baseline;
   display: inline-block;
   /* Better Font Rendering =========== */
@@ -105,4 +105,3 @@ fs.writeFile(`${root}${path.sep}icon.json`, JSON.stringify(iconList, null, 2), (
   console.log('写入icon列表文件成功!');
 });
 // https://static2.cnodejs.org/topic/55715ef4c4e7fbea6e9a2e7c
-

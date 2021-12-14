@@ -15,6 +15,14 @@ module.exports = {
     'comment-empty-line-before': false,
     'value-list-comma-newline-after': false,
     'declaration-colon-newline-after': false,
+    'no-descending-specificity': false,
+    'at-rule-no-unknown': [
+      true,
+      {
+        ignoreAtRules: ['mixin', 'include'],
+      },
+    ],
+    'no-empty-source': false,
     'rule-empty-line-before': false,
   },
   ignoreFiles: ['node_modules/**/*', 'dist/**/*'],

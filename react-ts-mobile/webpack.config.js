@@ -138,7 +138,7 @@ const webpackBaseConfig = {
       '@hooks': resolve('src/hooks'),
       '@api': resolve('src/api'),
     },
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.scss', '.less', '.css'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   plugins: [].concat(
     _envFlag
