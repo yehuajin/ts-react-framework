@@ -8,28 +8,29 @@ const _mergeConfig = require(`./config/webpack.${_env}.js`);
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const lessToJs = require('less-vars-to-js');
 const fs = require('fs');
-const themeVariables = lessToJs(
-  fs.readFileSync(join(__dirname, './src/assets/css/theme.less'), 'utf8')
-);
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const themeVariables = lessToJs(fs.readFileSync(join(__dirname, './src/assets/css/theme.less'), 'utf8'));
 const config = require('./config/index');
 
 const cssLoaders = [
   // post-css-preset-env和@babel/preset-env一样解析最新的css语法
   // { loader: 'style-loader' }, // 是将样式插入到html页面的style中，提取出来就不用这么做了
-  _envFlag ? MiniCssExtractPlugin.loader : {
-    loader: 'style-loader',
-    options: {
-      // 解决common.scss文件样式被覆盖
-      // insert: function insertAtTop(element) {
-      //   const style = document.querySelector('style');
-      //   if (style) {
-      //     style.parentNode.insertBefore(element, style);
-      //   } else {
-      //     document.querySelector('head') && document.querySelector('head').appendChild(element);
-      //   }
-      // },
-    },
-  },
+  _envFlag
+    ? MiniCssExtractPlugin.loader
+    : {
+        loader: 'style-loader',
+        options: {
+          // 解决common.scss文件样式被覆盖
+          // insert: function insertAtTop(element) {
+          //   const style = document.querySelector('style');
+          //   if (style) {
+          //     style.parentNode.insertBefore(element, style);
+          //   } else {
+          //     document.querySelector('head') && document.querySelector('head').appendChild(element);
+          //   }
+          // },
+        },
+      },
   {
     loader: 'css-loader',
     options: {
@@ -111,9 +112,7 @@ const webpackBaseConfig = {
       },
       {
         test: /\.(less)/,
-        use: cssLoaders.concat([
-          { loader: `less-loader`, options: { modifyVars: themeVariables } },
-        ]),
+        use: cssLoaders.concat([{ loader: `less-loader`, options: { modifyVars: themeVariables } }]),
       },
       {
         test: /\.(png|jpeg|git|eot|woff|woff2|ttf|svg|otf|webp|json|jpg)$/,
@@ -135,33 +134,37 @@ const webpackBaseConfig = {
       '@pages': resolve('src/pages'),
       '@utils': resolve('src/utils'),
       '@recoil': resolve('src/recoil'),
-      "@store/*": ["src/store/*"],
+      '@store/*': ['src/store/*'],
       '@hooks': resolve('src/hooks'),
       '@api': resolve('src/api'),
-      "@lib/*": ["src/lib/*"],
-      "@types/*": ["src/@types/*"],
+      '@lib/*': ['src/lib/*'],
+      '@types/*': ['src/@types/*'],
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
-  plugins: [].concat(
+  plugins: [
+    new ForkTsCheckerWebpackPlugin({
+      async: false,
+    }),
+  ].concat(
     _envFlag
       ? [
-        new MiniCssExtractPlugin({
-          // 解决common.scss文件样式被覆盖
-          // insert: function (linkTag) {
-          //   const link = document.querySelector('link');
-          //   if (link) {
-          //     link.parentNode.insertBefore(linkTag, link);
-          //   } else {
-          //     document.querySelector('head') && document.querySelector('head').appendChild(linkTag);
-          //   }
-          // },
-          filename: `${config.assets}/styles/[name].[contenthash:5].css`,
-          chunkFilename: `${config.assets}/styles/[id].[contenthash:5].css`,
-          ignoreOrder: true, // 忽略css文件引入的顺序，如果不设置在不能的js中引入css顺序不同就会产生警告
-        }),
-      ]
-      : []
+          new MiniCssExtractPlugin({
+            // 解决common.scss文件样式被覆盖
+            // insert: function (linkTag) {
+            //   const link = document.querySelector('link');
+            //   if (link) {
+            //     link.parentNode.insertBefore(linkTag, link);
+            //   } else {
+            //     document.querySelector('head') && document.querySelector('head').appendChild(linkTag);
+            //   }
+            // },
+            filename: `${config.assets}/styles/[name].[contenthash:5].css`,
+            chunkFilename: `${config.assets}/styles/[id].[contenthash:5].css`,
+            ignoreOrder: true, // 忽略css文件引入的顺序，如果不设置在不能的js中引入css顺序不同就会产生警告
+          }),
+        ]
+      : [],
   ),
 };
 
