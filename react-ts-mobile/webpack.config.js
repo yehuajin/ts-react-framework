@@ -127,7 +127,7 @@ const webpackBaseConfig = {
   resolve: {
     alias: {
       // tsconfig.json中也要对应设置
-      '@config': resolve(`src/config/env-${argv.env || 'development'}.js`), // 注意tsconfig中的配置
+      '@config': resolve(`src/config/env-${argv.env || 'development'}.ts`), // 注意tsconfig中的配置
       '@assets': resolve('src/assets'),
       '@components': resolve('src/components'),
       '@models': resolve('src/models'),
@@ -135,8 +135,11 @@ const webpackBaseConfig = {
       '@pages': resolve('src/pages'),
       '@utils': resolve('src/utils'),
       '@recoil': resolve('src/recoil'),
+      "@store/*": ["src/store/*"],
       '@hooks': resolve('src/hooks'),
       '@api': resolve('src/api'),
+      "@lib/*": ["src/lib/*"],
+      "@types/*": ["src/@types/*"],
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },

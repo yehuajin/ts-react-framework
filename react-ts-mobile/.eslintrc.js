@@ -15,6 +15,7 @@ module.exports = {
       tsx: true,
     },
   },
+  ignorePatterns: '*.js',
   plugins: ['@typescript-eslint/eslint-plugin', 'react'],
   extends: [
     'plugin:prettier/recommended',

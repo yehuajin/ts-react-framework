@@ -9,7 +9,7 @@ import { Toast } from 'antd-mobile';
 
 interface errorObj {
   code?: number;
-  msg: string;
+  msg?: string;
 }
 
 /**
@@ -31,14 +31,14 @@ export function showErrorMsg(error: errorObj) {
  */
 export function initServerError(error: AxiosError) {
   const { response, request } = error;
-  if (request.status === 0) {
+  if (request?.status === 0) {
     return {
       code: 100,
       msg: '服务器开小差了~稍后再试',
     };
   }
   // 判断如果是401错误 直接跳转至登录页
-  if (response.status === 401) {
+  if (response?.status === 401) {
     return {
       code: 101,
       msg: '登录超时，请重新登录',

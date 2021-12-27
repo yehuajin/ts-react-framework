@@ -7,8 +7,8 @@ axios.defaults.baseURL = envConfig.baseURL;
 // 超时时间15s
 axios.defaults.timeout = 15000;
 // Ajax请求
-(axios.defaults.headers.common as any)['X-Requested-With'] = 'XMLHttpRequest';
-(axios.defaults.headers.common as any)['Content-Type'] = 'application/json';
+(axios?.defaults?.headers?.common as any)['X-Requested-With'] = 'XMLHttpRequest';
+(axios?.defaults?.headers?.common as any)['Content-Type'] = 'application/json';
 
 // 请求拦截器
 axios.interceptors.request.use(

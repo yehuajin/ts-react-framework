@@ -29,7 +29,7 @@ const Routes: FC = () => {
         <Switch>
           {routes.map((route) => {
             const { path, exact, component } = route;
-            const LazyCom = component;
+            const LazyCom = component as React.LazyExoticComponent<React.FC<Record<string, unknown>>>;
             return (
               <Route
                 key={`${path}`}
