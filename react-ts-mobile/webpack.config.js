@@ -112,7 +112,9 @@ const webpackBaseConfig = {
       },
       {
         test: /\.(less)/,
-        use: cssLoaders.concat([{ loader: `less-loader`, options: { modifyVars: themeVariables } }]),
+        use: cssLoaders.concat([
+          { loader: `less-loader`, options: { lessOptions: { modifyVars: themeVariables, javascriptEnabled: true } } },
+        ]),
       },
       {
         test: /\.(png|jpeg|git|eot|woff|woff2|ttf|svg|otf|webp|json|jpg)$/,

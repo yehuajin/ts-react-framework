@@ -30,7 +30,7 @@
       {
         "libraryName": "antd",
         "libraryDirectory": "es",
-        "style": "css"
+        "style": true // 'css'选项会导致antd配置主题色样式会不生效
       },
       "antd"
     ],
@@ -40,7 +40,7 @@
       {
         "libraryName": "antd-mobile",
         "libraryDirectory": "es",
-        "style": "css"
+        "style": true
       },
       "antd-mobile"
     ]
