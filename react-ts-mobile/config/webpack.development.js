@@ -21,7 +21,7 @@ module.exports = {
     port: prot,
     // node-notifier, webpack-build-notifier
     quiet: true, // 配合friendly-error-webpack-plugin
-    watchContentBase: true,
+    watchContentBase: false,
     stats: {
       errorDetails: true,
     },
