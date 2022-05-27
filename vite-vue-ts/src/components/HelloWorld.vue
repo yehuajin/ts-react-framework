@@ -1,9 +1,24 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { reactive, watch, toRefs, watchEffect, ref } from 'vue'
 
 defineProps<{ msg: string }>()
 
-const count = ref(0)
+const state = reactive({count: 0});
+const {count} = toRefs(state);
+
+watch(() => state.count, (oldval, newval) => {
+  console.log(oldval, newval);
+});
+watch(count, (oldval, newval) => {
+  console.log(oldval, newval);
+});
+watchEffect(() => {
+  console.log(state.count);
+});
+// const count = ref(0);
+watchEffect(() => {
+  console.log(count.value);
+});
 </script>
 
 <template>
@@ -33,7 +48,7 @@ const count = ref(0)
   </p>
 </template>
 
-<style scoped>
+<style scoped >
 a {
   color: #42b983;
 }
