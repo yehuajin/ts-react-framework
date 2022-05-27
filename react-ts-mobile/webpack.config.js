@@ -11,6 +11,8 @@ const fs = require('fs');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const themeVariables = lessToJs(fs.readFileSync(join(__dirname, './src/assets/css/theme.less'), 'utf8'));
 const config = require('./config/index');
+// const chalk = require("chalk");
+// const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 
 const cssLoaders = [
   // post-css-preset-env和@babel/preset-env一样解析最新的css语法
@@ -79,6 +81,9 @@ const webpackBaseConfig = {
     path: join(__dirname, './dist'),
     clean: true,
   },
+  cache: {
+    type: 'filesystem',
+  },
   module: {
     rules: [
       {
@@ -92,7 +97,15 @@ const webpackBaseConfig = {
         test: /\.(js|jsx|ts|tsx)/,
         include: [resolve('src')],
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
+            }
+          },
+          "thread-loader",
+        ],
       },
       {
         test: /\.(css)/,
@@ -145,6 +158,10 @@ const webpackBaseConfig = {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   plugins: [
+    // // 进度条
+    // new ProgressBarPlugin({
+    //   format: `  :msg [:bar] ${chalk.green.bold(":percent")} (:elapsed s)`,
+    // }),
     new ForkTsCheckerWebpackPlugin({
       async: false,
     }),
