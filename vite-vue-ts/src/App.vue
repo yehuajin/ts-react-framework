@@ -3,7 +3,7 @@
   <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" /> -->
   <!-- <Table></Table> -->
   <el-button @click="showData">打印table数据</el-button>
-  <MyTable :columns="columns" :tableData="tableData" :tableEvent="tableEvent"></MyTable>
+  <MyTable ref="tableRef" :columns="columns" :tableData="tableData" :tableEvent="tableEvent"></MyTable>
 </template>
 
 <script setup lang="ts">
@@ -15,6 +15,7 @@ import { ElInput} from "element-plus";
 // import Table from "./components/Table.vue";
 import { reactive, ref } from "vue";
 
+const tableRef = ref();
 const columns = reactive([
   {
     type: "index",
@@ -37,20 +38,32 @@ const columns = reactive([
     label: "名称",
     width: 120,
     property: 'name',
-    editColumn: {
-      type: 'input',
-      props: {},
-      events: {},
-    }
+    // editColumn: {
+    //   type: 'input',
+    //   props: {},
+    //   events: {},
+    // }
   },
   {
     label: "地址",
     property: 'address',
     editColumn: {
       type: 'edit',
+      rules: [
+        {
+          validator: (value: any, scope: any, back: any) => {
+            console.log(value, scope);
+            back('错误')
+          }
+        }
+      ],
       component: ElInput,
       props: {},
-      events: {},
+      events: {
+        change: (scope: any, ...arg: any[]) => {
+          console.log(scope, 11, ...arg, 22)
+        }
+      },
     }
   },
 ]);
@@ -98,9 +111,11 @@ const tableData: User[] = reactive([
 ]);
 const showData = () => {
   console.log('tableData', tableData);
+  console.log(tableRef.value.getValidates(), tableRef.value.validate());
 }
 const multipleSelection = ref<User[]>([])
 const handleSelectionChange = (val: User[]) => {
+  console.log(111, val);
   multipleSelection.value = val;
 };
 const tableEvent = {

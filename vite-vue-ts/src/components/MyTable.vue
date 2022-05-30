@@ -21,7 +21,7 @@
   </el-table>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { provide, reactive, ref } from "vue";
 import MyTableColumn from "./MyTableColumn.vue";
 import type { ElTable, ElTableColumn } from "element-plus";
 type Props = {
@@ -37,8 +37,32 @@ const props = withDefaults(defineProps<Props>(), {
   tableEvent: () => {},
   tableProps: () => {},
 });
-
+const state = reactive({ tableValidateList: [] });
+provide("tableValidateList", state.tableValidateList);
 const tableRef = ref<InstanceType<typeof ElTable>>();
+function validate() {
+  return new Promise((resolve, reject) => {
+    const promiseList: any[] = [];
+    state.tableValidateList.forEach((item: any) => {
+      promiseList.push(item?.exposed?.validate());
+    });
+    Promise.all(promiseList)
+      .then(() => {
+        resolve("");
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+function getValidates() {
+  return state.tableValidateList;
+}
+defineExpose({
+  validate,
+  getValidates,
+  tableInstance: tableRef.value,
+});
 </script>
 
 <style scoped lang="scss"></style>

@@ -4,20 +4,15 @@
   </el-table-column>
   <el-table-column v-else-if="props.column.editColumn" v-bind="bindColumn">
     <template #default="scope">
-      <component
+      <!-- <component
         v-if="editColumn.type === 'edit'"
         v-bind:is="editColumn.component"
         v-model="scope.row[column.property]"
         v-on="editColumn.events"
         v-bind="editColumn.props"
       ></component>
-      <el-input
-        v-else-if="editColumn.type === 'input'"
-        v-model="scope.row[column.property]"
-        v-on="editColumn.events"
-        v-bind="editColumn.props"
-      ></el-input>
-      <span v-else>{{ scope.row[column.property] }}</span>
+      <span v-else>{{ scope.row[column.property] }}</span> -->
+      <ColumnContent :editColumn="editColumn" :property="column.property" :scope="scope"></ColumnContent>
     </template>
   </el-table-column>
   <el-table-column v-else v-bind="bindColumn" />
@@ -25,6 +20,7 @@
 <script setup lang="ts">
 import { computed, ref, toRaw } from "vue";
 // import type { ElTableColumn } from "element-plus";
+import ColumnContent from "./ColumnContent.vue";
 type Props = {
   column: any;
 };
