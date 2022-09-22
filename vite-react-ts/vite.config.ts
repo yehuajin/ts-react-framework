@@ -2,7 +2,7 @@ import { defineConfig } from "vite"; // 为了获取类型提示
 import react from "@vitejs/plugin-react";
 import path from "path";
 import legacy from "@vitejs/plugin-legacy";
-import vitePluginImp from 'vite-plugin-imp'
+// import vitePluginImp from 'vite-plugin-imp'
 import lessToJs from 'less-vars-to-js';
 import fs from 'fs';
 import { join } from 'path';
@@ -14,20 +14,24 @@ export default defineConfig(({ command, mode }) => {
   const baseConfig = {
     base: "/assets/",
     plugins: [
-      react(),
+      react({
+        babel: {
+          babelrc: true,
+        }
+      }),
       legacy({
         targets: ['defaults', 'not IE 11'],
         // targets: ["ie >= 11"],
         // additionalLegacyPolyfills: ["regenerator-runtime/runtime"],
       }),
-      vitePluginImp({
-        libList: [
-          {
-            libName: "antd",
-            style: (name: string) => `antd/es/${name}/style`,
-          },
-        ],
-      })
+      // vitePluginImp({
+      //   libList: [
+      //     {
+      //       libName: "antd",
+      //       style: (name: string) => `antd/es/${name}/style`,
+      //     },
+      //   ],
+      // })
     ],
     resolve: {
       alias: {
@@ -57,6 +61,10 @@ export default defineConfig(({ command, mode }) => {
   if (command === 'serve') {
     return {
       ...baseConfig,
+      optimizeDeps: {
+        // 设置为 true 强制使依赖预构建
+        force: true,
+      },
       server: {
         // 是否自动打开浏览器
         open: true,
@@ -68,8 +76,6 @@ export default defineConfig(({ command, mode }) => {
         strictPort: false,
         // 为开发服务器配置 CORS
         cors: true,
-        // 设置为 true 强制使依赖预构建
-        force: true,
         // 代理
         proxy: {
           '/api':
