@@ -6,6 +6,7 @@ import legacy from "@vitejs/plugin-legacy";
 import lessToJs from 'less-vars-to-js';
 import fs from 'fs';
 import { join } from 'path';
+
 const themeVariables = lessToJs(fs.readFileSync(join(__dirname, './src/assets/css/theme.less'), 'utf8'));
 
 // https://vitejs.dev/config/
@@ -63,7 +64,7 @@ export default defineConfig(({ command, mode }) => {
       ...baseConfig,
       optimizeDeps: {
         // 设置为 true 强制使依赖预构建
-        force: true,
+        // force: true,
       },
       server: {
         // 是否自动打开浏览器

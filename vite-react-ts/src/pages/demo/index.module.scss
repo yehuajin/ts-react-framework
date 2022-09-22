@@ -1,5 +1,6 @@
 .color {
   color: red;
+  user-select: none;
 
   &.center-no-module {
     font-size: 28px;
