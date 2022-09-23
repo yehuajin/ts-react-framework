@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "build-icon": "node config/build-icon.js"
+    "build-icon": "node config/build-icon.js",
+    "lintcss": "stylelint src/**/*.{css,scss} --fix --custom-syntax postcss-scss"
   },
   "dependencies": {
     "antd": "^4.23.2",
@@ -47,6 +48,7 @@
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-normalize": "^10.0.1",
     "postcss-preset-env": "^7.8.2",
+    "postcss-scss": "^4.0.5",
     "prettier": "^2.7.1",
     "sass": "^1.54.9",
     "stylelint": "^14.12.1",
