@@ -11,7 +11,7 @@ const postcssConfing = {
       },
     },
     'postcss-flexbugs-fixes': {},
-    'postcss-normalize': {},
+    'postcss-normalize': {}
   },
 };
 

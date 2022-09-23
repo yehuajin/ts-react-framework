@@ -4,6 +4,7 @@ import path from "path";
 import legacy from "@vitejs/plugin-legacy";
 // import vitePluginImp from 'vite-plugin-imp'
 import lessToJs from 'less-vars-to-js';
+import eslintPlugin from 'vite-plugin-eslint';
 import fs from 'fs';
 import { join } from 'path';
 
@@ -11,7 +12,6 @@ const themeVariables = lessToJs(fs.readFileSync(join(__dirname, './src/assets/cs
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
-  console.log(command, mode);
   const baseConfig = {
     base: "/assets/",
     plugins: [
@@ -20,6 +20,12 @@ export default defineConfig(({ command, mode }) => {
           babelrc: true,
         }
       }),
+      eslintPlugin(),
+      // eslintPlugin({
+      //   // include: ['./src/**/*.js', './src/**/*.ts', './src/**/*.jsx', './src/**/*.tsx', './src/*.js', './src/*.ts', './src/*.jsx', './src/*.tsx'],
+      //   // exclude: ['./node_modules/**'],
+      //   cache: false,
+      // }),
       legacy({
         targets: ['defaults', 'not IE 11'],
         // targets: ["ie >= 11"],

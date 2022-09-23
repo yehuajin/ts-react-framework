@@ -12,7 +12,9 @@ const Home: FC = () => {
   return (
     <div className={`${style.color} center`}>
       home
-      <Button type="primary" onClick={() => historyPush(navigate, '/icon-list')}>icon-list</Button>
+      <Button type="primary" onClick={() => historyPush(navigate, '/icon-list')}>
+        icon-list
+      </Button>
     </div>
   );
 };
