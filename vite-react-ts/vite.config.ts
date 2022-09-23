@@ -7,6 +7,7 @@ import lessToJs from 'less-vars-to-js';
 import eslintPlugin from 'vite-plugin-eslint';
 import fs from 'fs';
 import { join } from 'path';
+// import {visualizer} from 'rollup-plugin-visualizer';
 
 const themeVariables = lessToJs(fs.readFileSync(join(__dirname, './src/assets/css/theme.less'), 'utf8'));
 
@@ -37,6 +38,7 @@ export default defineConfig(({ command, mode }) => {
       //     },
       //   ],
       // })
+      // visualizer(),
     ],
     resolve: {
       alias: {
