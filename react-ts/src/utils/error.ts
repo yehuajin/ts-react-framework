@@ -7,7 +7,7 @@ import { message } from 'antd';
  * 200 普通客户端校验，正常显示错误信息
  */
 
-interface errorObj {
+interface ErrorObj {
   code?: number;
   msg?: string;
 }
@@ -17,7 +17,7 @@ interface errorObj {
  * @param code 错误码
  * @param msg 错误信息
  */
-export function showErrorMsg(error: errorObj) {
+export function showErrorMsg(error: ErrorObj): void {
   const { msg } = error;
   // 根据业务处理错误信息展示
   // console.log(code, msg);
@@ -29,7 +29,7 @@ export function showErrorMsg(error: errorObj) {
  * @param error 服务器返回错误信息
  * @returns {{code: number, msg}} 封装后错误信息
  */
-export function initServerError(error: AxiosError) {
+export function initServerError(error: AxiosError): ErrorObj {
   const { response, request } = error;
   if (request?.status === 0) {
     return {
@@ -55,7 +55,7 @@ export function initServerError(error: AxiosError) {
  * @param errorMsg 需要提示给用户的错误信息
  * @returns {{code: number, msg: *}} 封装后错误信息
  */
-export function initValidate(error: errorObj) {
+export function initValidate(error: ErrorObj): ErrorObj {
   const { code, msg } = error;
   return {
     code: code || 200,

@@ -1,70 +1,40 @@
 // lazy和Suspense不支持服务端渲染需要使用@loadable/component
 // import loadable from '@loadable/component'
+// https://blog.csdn.net/u010821983/article/details/121283039
 import React, { FC, Suspense } from 'react';
-import { BrowserRouter as Router, Switch, Route, RouteProps } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, RouteProps } from 'react-router-dom';
 import Loading from '@components/loading';
 import NotFound from '@components/not-found';
 import envConfig from '@config';
 
-const Home = React.lazy(() => import('@pages/home'));
+const Home = React.lazy(() => import('@pages/demo'));
 const IconList = React.lazy(() => import('@pages/icon-list'));
 
-const routes: RouteProps[] = [
+const routeList: RouteProps[] = [
   {
-    path: '/',
-    exact: true,
-    component: Home,
+    path: '/demo/:id',
+    element: <Home></Home>,
   },
   {
     path: '/icon-list',
-    exact: true,
-    component: IconList,
+    element: <IconList></IconList>,
   },
 ];
 
-const Routes: FC = () => {
+const RouteFc: FC = () => {
   return (
     <Router basename={envConfig.basename}>
       <Suspense fallback={<Loading />}>
-        <Switch>
-          {routes.map((route) => {
-            const { path, exact, component } = route;
-            const LazyCom = component as React.LazyExoticComponent<React.FC<Record<string, unknown>>>;
-            return (
-              <Route
-                key={`${path}`}
-                path={path}
-                exact={exact}
-                render={(props) => {
-                  // 这里也可以使用Switch
-                  return <LazyCom {...props}> </LazyCom>;
-                }}
-              />
-            );
+        <Routes>
+          {routeList.map((route) => {
+            const { path, element } = route;
+            return <Route key={`${path}`} path={`${path}`} element={element} />;
           })}
-          <Route component={NotFound} />
-        </Switch>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </Suspense>
     </Router>
   );
 };
 
-export default Routes;
-
-// export default function App() {
-//   return (
-//     <Router>
-//       <Switch>
-//         <Route path="/about">
-//           <About />
-//         </Route>
-//         <Route path="/topics">
-//           <Topics />
-//         </Route>
-//         <Route path="/">
-//           <Home />
-//         </Route>
-//       </Switch>
-//     </Router>
-//   );
-// }
+export default RouteFc;

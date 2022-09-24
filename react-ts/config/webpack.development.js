@@ -10,6 +10,9 @@ const prot = 8081;
 
 const config = {
   mode: 'development',
+  cache: {
+    type: 'filesystem',
+  },
   output: {
     assetModuleFilename: 'images/[name][ext]', // 对应rules中图片文件资源中的type: 'asset'
     filename: 'scripts/[name].bundle.js',
@@ -17,13 +20,13 @@ const config = {
   },
   devServer: {
     historyApiFallback: true, // 刷新页面会响应到index页面，避免出现404
-    contentBase: join(__dirname, '../dist/assets'), // 资源文件目录
+    // contentBase: join(__dirname, '../dist/assets'), // 资源文件目录
     inline: true, // 模式 iframe，监听文件变化，自动刷新页面
     // host: '0.0.0.0', // 使用ip访问
     port: prot,
     // node-notifier, webpack-build-notifier
     quiet: true, // 配合friendly-error-webpack-plugin
-    watchContentBase: true,
+    watchContentBase: false,
     stats: {
       errorDetails: true,
     },
