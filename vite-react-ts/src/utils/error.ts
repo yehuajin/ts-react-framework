@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { message } from 'antd';
+import { message } from '@components/StaticFunction';
 /**
  * 前端重新封装状态吗，对接口错误进行归类方便前端处理
  * 100 普通服务器端错误，直接将错误信息弹框显示
