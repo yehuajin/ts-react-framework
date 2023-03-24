@@ -3,13 +3,13 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import legacy from "@vitejs/plugin-legacy";
 // import vitePluginImp from 'vite-plugin-imp'
-import lessToJs from 'less-vars-to-js';
+// import lessToJs from 'less-vars-to-js';
 import eslintPlugin from 'vite-plugin-eslint';
-import fs from 'fs';
-import { join } from 'path';
+// import fs from 'fs';
+// import { join } from 'path';
 // import {visualizer} from 'rollup-plugin-visualizer';
 
-const themeVariables = lessToJs(fs.readFileSync(join(__dirname, './src/assets/css/theme.less'), 'utf8'));
+// const themeVariables = lessToJs(fs.readFileSync(join(__dirname, './src/assets/css/theme.less'), 'utf8'));
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -54,10 +54,10 @@ export default defineConfig(({ command, mode }) => {
         scss: {
           additionalData: `@import "./src/assets/css/variable.scss";`,
         },
-        less:{
-          javascriptEnabled: true,  //注意，这一句是在less对象中，写在外边不起作用
-          modifyVars: themeVariables,
-        }
+        // less:{
+        //   javascriptEnabled: true,  //注意，这一句是在less对象中，写在外边不起作用
+        //   modifyVars: themeVariables,
+        // }
       },
     },
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'], // 默认值

@@ -6,10 +6,10 @@ _env = _env === 'development' ? 'development' : 'production';
 const _envFlag = _env === 'production';
 const _mergeConfig = require(`./config/webpack.${_env}.js`);
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const lessToJs = require('less-vars-to-js');
-const fs = require('fs');
+// const lessToJs = require('less-vars-to-js');
+// const fs = require('fs');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const themeVariables = lessToJs(fs.readFileSync(join(__dirname, './src/assets/css/theme.less'), 'utf8'));
+// const themeVariables = lessToJs(fs.readFileSync(join(__dirname, './src/assets/css/theme.less'), 'utf8'));
 const config = require('./config/index');
 // const chalk = require("chalk");
 // const ProgressBarPlugin = require("progress-bar-webpack-plugin");
@@ -126,7 +126,8 @@ const webpackBaseConfig = {
       {
         test: /\.(less)/,
         use: cssLoaders.concat([
-          { loader: `less-loader`, options: { lessOptions: { modifyVars: themeVariables, javascriptEnabled: true } } },
+          // { loader: `less-loader`, options: { lessOptions: { modifyVars: themeVariables, javascriptEnabled: true } } },
+          { loader: `less-loader` },
         ]),
       },
       {

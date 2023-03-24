@@ -11,7 +11,7 @@
     "lintcss": "stylelint src/**/*.{css,scss} --fix --custom-syntax postcss-scss"
   },
   "dependencies": {
-    "antd": "^4.23.2",
+    "antd": "^5.2.0",
     "axios": "^0.27.2",
     "less": "^4.1.3",
     "react": "^18.2.0",
