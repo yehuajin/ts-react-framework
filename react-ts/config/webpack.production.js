@@ -96,7 +96,7 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: resolve(__dirname, '../static'),
+          from: resolve(__dirname, `../${config.assets}`),
           to: resolve(__dirname, `../dist/${config.assets}`),
         },
       ],
