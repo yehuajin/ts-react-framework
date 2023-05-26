@@ -30,6 +30,7 @@ const config = {
     stats: {
       errorDetails: true,
     },
+    hot: true,
     proxy: {
       '/app/**': {
         target: 'https://127.0.0.1/',
