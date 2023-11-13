@@ -20,3 +20,14 @@ https://www.cnblogs.com/Berryxiong/p/6193866.html
 
 ## 增加recoil
 ## 增加axios封装
+
+
+## 子应用跨域请求设置
+
+ devServer: {
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+  }
+},
+
+除了前缀父应用的路由要和子应用的路由相同

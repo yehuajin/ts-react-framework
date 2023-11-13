@@ -12,7 +12,7 @@ export default function MyPage(): React.ReactElement {
       // baseroute(可选)：基座应用分配给子应用的基础路由，就是上面的 `/my-page` */}
       <micro-app
         name="app1"
-        url="http://localhost:8081/"
+        url="http://localhost:8081"
         baseroute="/assets"
         onCreated={() => console.log('micro-app元素被创建')}
         onBeforemount={() => console.log('即将被渲染')}

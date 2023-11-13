@@ -12,6 +12,10 @@ const IconList = React.lazy(() => import('@pages/icon-list'));
 
 const routeList: RouteProps[] = [
   {
+    path: '/',
+    element: <Home></Home>,
+  },
+  {
     path: '/demo/:id',
     element: <Home></Home>,
   },
@@ -20,7 +24,6 @@ const routeList: RouteProps[] = [
     element: <IconList></IconList>,
   },
 ];
-
 const RouteFc: FC = () => {
   return (
     <Router basename={envConfig.basename}>

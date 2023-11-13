@@ -33,12 +33,12 @@ microApp.start({
 
 const routeList: RouteProps[] = [
   {
-    path: '/demo/:id',
-    element: <Home></Home>,
+    path: '/demo/1',
+    element: <MyPage1></MyPage1>,
   },
   {
-    path: '/my-page1',
-    element: <MyPage1></MyPage1>,
+    path: '/demo/:id',
+    element: <Home></Home>,
   },
 ];
 

@@ -41,6 +41,10 @@ const config = {
         changeOrigin: true,
       },
     },
+    // 微服务使用
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    }
   },
   devtool: 'eval-source-map',
   target: 'web',
