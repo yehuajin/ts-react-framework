@@ -147,6 +147,12 @@ const webpackBaseConfig = {
         test: /\.(png|jpeg|git|eot|woff|woff2|ttf|svg|otf|webp|json|jpg)$/,
         type: 'asset', // 不需要file-loader,webpack内置了
       },
+      {
+        test: /\.(svelte)$/,
+        use: {
+          loader: 'svelte-loader',
+        },
+      },
     ],
   },
   externals: {
@@ -170,6 +176,7 @@ const webpackBaseConfig = {
       '@types': resolve('src/@types'),
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    conditionNames: ['browser', 'import', 'require', 'node'],
   },
   plugins: [
     // // 进度条
