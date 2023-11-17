@@ -7,7 +7,7 @@ const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const smp = new SpeedMeasurePlugin();
 const configIndex = require('./index');
 // const ICON = join(__dirname, 'icon.png');
-const prot = 8081;
+const prot = 8080;
 
 const config = {
   mode: 'development',
@@ -41,10 +41,6 @@ const config = {
         changeOrigin: true,
       },
     },
-    // 微服务使用
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    }
   },
   devtool: 'eval-source-map',
   target: 'web',
