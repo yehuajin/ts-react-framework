@@ -9,8 +9,12 @@ const Home: FC = () => {
   const param = useParams();
   console.log(param);
   useEffect(() => {
+    const a = '111111111';
+    function fn() {
+      console.log(a);
+    }
     // eslint-disable-next-line no-new
-    new Counter({ target: document.getElementById('counter') });
+    new Counter({ target: document.getElementById('counter'), props: { a, click: fn } });
   }, []);
   return (
     <>
