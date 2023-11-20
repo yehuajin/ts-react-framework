@@ -11,6 +11,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 // const themeVariables = lessToJs(fs.readFileSync(join(__dirname, './src/assets/css/theme.less'), 'utf8'));
 const config = require('./config/index');
+const sveltePreprocess = require('svelte-preprocess');
 // const chalk = require("chalk");
 // const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 
@@ -99,6 +100,31 @@ const webpackBaseConfig = {
   module: {
     rules: [
       {
+        test: /\.(svelte)$/,
+        use: [
+          'babel-loader',
+          {
+            loader: 'svelte-loader',
+            options: {
+              preprocess: sveltePreprocess({sourceMap: !_envFlag}),
+              compilerOptions: {
+                dev: !_envFlag,
+                accessors: true,
+              },
+              emitCss: true,
+              hotReload: false,
+            }
+          }
+        ],
+      },
+      {
+        test: /node_modules\/svelte \/.* \.m?js$/,
+        resolve: {
+          fullySpecified: false,
+        },
+        use: ['babel-loader'],
+      },
+      {
         test: /\.(jsx|js|ts|tsx)$/,
         include: [resolve('src')],
         exclude: [/node_modules/],
@@ -147,12 +173,6 @@ const webpackBaseConfig = {
         test: /\.(png|jpeg|git|eot|woff|woff2|ttf|svg|otf|webp|json|jpg)$/,
         type: 'asset', // 不需要file-loader,webpack内置了
       },
-      {
-        test: /\.(svelte)$/,
-        use: {
-          loader: 'svelte-loader',
-        },
-      },
     ],
   },
   externals: {
@@ -176,7 +196,7 @@ const webpackBaseConfig = {
       '@types': resolve('src/@types'),
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    conditionNames: ['browser', 'import', 'require', 'node'],
+    conditionNames: ['browser', 'import', 'require', 'node', 'svelte'],
   },
   plugins: [
     // // 进度条
