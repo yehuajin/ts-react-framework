@@ -8,8 +8,17 @@
   // }
 </script>
 
-<button on:click={click}>
+<button class="button" on:click={click}>
   count is {count}
 </button>
 <div>{a}</div>
 <Counter>12133</Counter>
+<style>
+  .button {
+    background-color: rgb(0, 26, 255);
+    width: 100px;
+    height: 50px;
+    color: white;
+    font-size: 18px;
+  }
+</style>
