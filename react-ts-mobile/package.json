@@ -101,7 +101,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.0",
     "react-svg": "^16.1.32",
-    "recoil": "^0.3.1",
+    "recoil": "^0.7.7",
     "typescript": "^4.8.3",
     "utf8": "^3.0.0"
   },
