@@ -1,6 +1,5 @@
 ## 使用技术
 前端：React + react-router + axios + TypeScript + Recoil + Hooks + cssnext
-后端：BFF Node Koa Serverless  函数计算  OSS
 
 ## scripts文件夹下的文件设置权限
 chmod -R(递归处理) u(文件属主)+rx(增加读和可执行权限) ./scripts
