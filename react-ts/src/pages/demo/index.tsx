@@ -1,8 +1,9 @@
 import style from './index.module.scss';
 import React, { FC, useEffect } from 'react';
-import { historyPush } from '@utils/index';
 import { useNavigate, useParams } from 'react-router-dom';
 import Counter from '../../svelte/Counter.svelte';
+import { ReactSVG } from 'react-svg';
+import reactImg from '@assets/svg/react.svg';
 
 const Home: FC = () => {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ const Home: FC = () => {
     <>
       <div onClick={() => historyPush(navigate, '/icon-list')} className={`${style.color} center`}>
         home
+        <ReactSVG src={reactImg}></ReactSVG>
       </div>
       <div id="counter" />
     </>
