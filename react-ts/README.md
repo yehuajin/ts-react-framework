@@ -1,6 +1,5 @@
 ## 使用技术
 前端：React + react-router + axios + TypeScript + Recoil + Hooks + cssnext
-后端：BFF Node Koa Serverless  函数计算  OSS
 
 ## cnpm 安装模块可以，但cnpm uninstall 卸载时就不行
 这是由于npm和cnpm的全局模块地址不同造成的。
