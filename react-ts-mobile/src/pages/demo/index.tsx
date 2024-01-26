@@ -1,7 +1,8 @@
 import style from './index.module.scss';
 import React, { FC } from 'react';
-import { historyPush } from '@utils/index';
 import { useNavigate, useParams } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
+import reactImg from '@assets/svg/react.svg';
 
 const Home: FC = () => {
   const navigate = useNavigate();
@@ -9,8 +10,9 @@ const Home: FC = () => {
   console.log(param);
 
   return (
-    <div onClick={() => historyPush(navigate, '/icon-list')} className={`${style.color} center`}>
+    <div onClick={() => navigate('/icon-list')} className={`${style.color} center`}>
       home
+      <ReactSVG src={reactImg}></ReactSVG>
     </div>
   );
 };
