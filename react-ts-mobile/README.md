@@ -17,18 +17,21 @@ spawn：UNKOWN
 先获取npm全局模块地址 npm config get prefix
 再设置cnpm全局模块地址 cnpm config set prefix <npm全局模块地址>
 
-# 需要加的功能
-## 需要增加eslint
-## 增加svg转icon处理
-展示全部icon的页面未添加路由(未完成)
+## icon图标使用react-svg，可以改变图标颜色
+npm run build-icon
+然后访问icon-list路由可以查看所有的svg图片
 ## 增加css模块化
 .module.scss文件进行模块化处理
 ## 增加css变量,ant css全局变量修改
 ## 增加静态资源copy(静态资源放在assets文件中)
 
+## 增加recoil做状态管理
+
+## 启动项目
+npm run dev
 
 
-# 移动端要加的功能
+# 移动端功能
 ## rem转换
 ## 调试js文件
 
