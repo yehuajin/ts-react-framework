@@ -74,16 +74,16 @@ const cssLoaders = [
 ];
 
 let checkLoader = [];
-if (!_envFlag) {
-  checkLoader = [
-    {
-      test: /\.(jsx|js|ts|tsx)$/,
-      include: [resolve('src')],
-      exclude: [/node_modules/],
-      use: ['./loaders/check-loader.js'],
-    },
-  ];
-}
+// if (!_envFlag) {
+//   checkLoader = [
+//     {
+//       test: /\.(jsx|js|ts|tsx)$/,
+//       include: [resolve('src')],
+//       exclude: [/node_modules/],
+//       use: ['./loaders/check-loader.js'],
+//     },
+//   ];
+// }
 
 const webpackBaseConfig = {
   entry: {

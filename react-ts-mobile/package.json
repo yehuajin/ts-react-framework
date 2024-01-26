@@ -4,9 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "client:dev": "scripty",
-    "client:prod": "scripty",
-    "client:server": "scripty",
     "dev": "webpack serve --env development --open",
     "build-for-prod": "webpack --env production",
     "build-for-tester": "webpack --env tester",

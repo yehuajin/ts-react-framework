@@ -1,1 +1,0 @@
-webpack serve --env development --open
