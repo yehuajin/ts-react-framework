@@ -11,7 +11,7 @@
     "build-for-prod": "webpack --env production",
     "build-for-tester": "webpack --env tester",
     "build-for-demo": "webpack --env demo",
-    "build-icon": "node config/build-icon.js",
+    "svg": "node config/svg-list.cjs",
     "lint": "eslint src --fix --ext .ts,.tsx "
   },
   "repository": {
@@ -101,6 +101,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.0",
+    "react-svg": "^16.1.32",
     "recoil": "^0.3.1",
     "typescript": "^4.8.3",
     "utf8": "^3.0.0"

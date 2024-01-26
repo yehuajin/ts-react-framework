@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client';
 import App from '@pages/App';
 import '@assets/css/common.scss';
 // icon字体样式
-import '@assets/font/icon-fonts/icon.css';
 import 'core-js';
 // import env from '@config';
 // console.log(env);
