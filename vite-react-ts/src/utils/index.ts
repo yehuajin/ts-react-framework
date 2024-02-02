@@ -1,6 +1,6 @@
 /**
- * 获取带basename的url
+ * window.location跳转处理
  */
-export function getBaseUrl(url: string): string {
-  return `${import.meta.env.VITE_BASE_NAME}${url}`;
+export function windowLocation(url: string): void {
+  window.location.href = `${import.meta.env.VITE_BASE_NAME}${url}`;
 }

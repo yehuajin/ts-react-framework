@@ -7,11 +7,6 @@ import { Toast } from 'antd-mobile';
  * 200 普通客户端校验，正常显示错误信息
  */
 
-interface ErrorObj {
-  code?: number;
-  msg?: string;
-}
-
 /**
  * 展示错误信息
  * @param code 错误码
