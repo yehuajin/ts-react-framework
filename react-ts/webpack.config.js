@@ -6,6 +6,7 @@ _env = _env === 'development' ? 'development' : 'production';
 const _envFlag = _env === 'production';
 const _mergeConfig = require(`./config/webpack.${_env}.js`);
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 // const lessToJs = require('less-vars-to-js');
 // const fs = require('fs');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
@@ -115,9 +116,10 @@ const webpackBaseConfig = {
             loader: 'babel-loader',
             options: {
               cacheDirectory: true,
-            }
+              plugins: [!_envFlag && require.resolve('react-refresh/babel')].filter(Boolean),
+            },
           },
-          "thread-loader",
+          'thread-loader',
         ],
       },
       {
@@ -197,7 +199,7 @@ const webpackBaseConfig = {
             ignoreOrder: true, // 忽略css文件引入的顺序，如果不设置在不能的js中引入css顺序不同就会产生警告
           }),
         ]
-      : [],
+      : [new ReactRefreshWebpackPlugin()],
   ),
 };
 
