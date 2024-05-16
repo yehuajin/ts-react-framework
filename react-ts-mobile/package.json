@@ -93,7 +93,6 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.16.0",
-    "antd": "^5.2.0",
     "antd-mobile": "^5.36.0",
     "axios": "^0.22.0",
     "base-64": "^1.0.0",

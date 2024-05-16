@@ -16,7 +16,10 @@ export function showErrorMsg(error: ErrorObj): void {
   const { msg } = error;
   // 根据业务处理错误信息展示
   // console.log(code, msg);
-  Toast.fail(msg, 2);
+  Toast.show({
+    icon: 'fail',
+    content: msg,
+  })
 }
 
 /**

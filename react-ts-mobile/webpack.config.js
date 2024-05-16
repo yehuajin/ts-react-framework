@@ -10,7 +10,6 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 // const lessToJs = require('less-vars-to-js');
 // const fs = require('fs');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-// const themeVariables = lessToJs(fs.readFileSync(join(__dirname, './src/assets/css/theme.less'), 'utf8'));
 const config = require('./config/index');
 // const chalk = require("chalk");
 // const ProgressBarPlugin = require("progress-bar-webpack-plugin");
@@ -110,7 +109,7 @@ const webpackBaseConfig = {
       {
         test: /\.(js|jsx|ts|tsx)/,
         include: [resolve('src')],
-        exclude: /node_modules/,
+        // exclude: /node_modules/,  兼容"chrome": "49", "ios": "10"
         use: [
           {
             loader: 'babel-loader',
@@ -141,7 +140,6 @@ const webpackBaseConfig = {
       {
         test: /\.(less)/,
         use: cssLoaders.concat([
-          // { loader: `less-loader`, options: { lessOptions: { modifyVars: themeVariables, javascriptEnabled: true } } },
           { loader: `less-loader` },
         ]),
       },

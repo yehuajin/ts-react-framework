@@ -8,6 +8,10 @@
         "corejs": {
           "version": 3,
           "proposals": true
+        },
+        "targets": { // 不要把 node_modules 排除在 babel 编译之外，不然该面的配置不会有效果
+          "chrome": "49",
+          "ios": "10"
         }
       }
     ],
@@ -27,21 +31,10 @@
       // 通过babel-plugin-import实现按需加载
       "import",
       {
-        "libraryName": "antd",
-        "libraryDirectory": "es",
-        "style": true // 'css'选项会导致antd配置主题色样式会不生效
-      },
-      "antd"
-    ],
-    [
-      // 通过babel-plugin-import实现按需加载
-      "import",
-      {
         "libraryName": "antd-mobile",
-        "libraryDirectory": "es",
-        "style": true
-      },
-      "antd-mobile"
+        "libraryDirectory": "es/components",
+        "style": false
+      }
     ]
   ]
   // 代码分割的最佳方式
